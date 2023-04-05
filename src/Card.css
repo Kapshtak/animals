@@ -1,0 +1,105 @@
+.card {
+  position: relative;
+  width: 150px;
+  height: 200px;
+  border: black solid 1px;
+  background-color: white;
+  margin: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 0;
+}
+
+.card h2 {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.likes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.total_likes,
+.icon_storage {
+  width: 40px;
+  height: 30px;
+}
+
+.icon_storage {
+  display: flex;
+  justify-content: end;
+}
+
+.icon {
+  width: 30px;
+  filter: opacity(0.5);
+  background-image: url('../public/heart.png');
+  background-size: 30px;
+  background-repeat: no-repeat;
+}
+
+.broken {
+  background-image: url('../public/broken_heart.png');
+}
+
+.total_likes h3 {
+  line-height: 30px;
+  text-align: start;
+  font-weight: 200;
+}
+
+.animal_picture {
+  width: 100%;
+  filter: grayscale(50%);
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.animal_picture:hover {
+  filter: grayscale(0%);
+}
+
+.increase {
+  background-image: url('../public/like.png');
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  filter: opacity(0.5);
+}
+
+.decrease {
+  background-image: url('../public/dislike.png');
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+  filter: opacity(0.5);
+}
+
+.increase:hover,
+.decrease:hover {
+  filter: drop-shadow(1px 1px rgba(0, 0, 0, 0.426));
+  filter: opacity(1);
+}
+
+.delete {
+  position: absolute;
+  background-image: url('../public/delete.png');
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  top: 5px;
+  right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete:hover {
+  transform: rotate(90deg);
+  background-color: rgba(255, 255, 255, 1);
+}
