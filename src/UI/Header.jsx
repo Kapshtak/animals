@@ -23,7 +23,11 @@ const Header = (props) => {
           </li>
         </ul>
       </nav>
-      <Button label='Add creature' func={props.changeVisibility} className='addAnimal'/>
+      <Button
+        label="Add creature"
+        func={props.changeVisibility}
+        className="addAnimal"
+      />
     </header>
   )
 }

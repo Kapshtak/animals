@@ -11,7 +11,7 @@ const Button = (props) => {
 }
 
 Button.propTypes = {
-  func: PropTypes.func.isRequired,
+  func: PropTypes.func,
   label: PropTypes.string,
   className: PropTypes.string
 }
