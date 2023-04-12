@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Card from './Card'
-import Search from './Search'
-import './Animal.css'
+import Search from '../UI/Search'
+import Card from '../components/Card'
+import '../UI/Creature.css'
 
-const Animal = (props) => {
+const Creature = (props) => {
   const filteredAnimals = props.data.filter((animal) => {
     return animal.name.includes(props.searchQuery)
   })
@@ -51,7 +51,7 @@ const Animal = (props) => {
   )
 }
 
-Animal.propTypes = {
+Creature.propTypes = {
   data: PropTypes.array.isRequired,
   decreaseFunction: PropTypes.func.isRequired,
   increaseFunction: PropTypes.func.isRequired,
@@ -61,4 +61,4 @@ Animal.propTypes = {
   kind: PropTypes.string.isRequired
 }
 
-export default Animal
+export default Creature
