@@ -10,13 +10,12 @@ const Creature = (props) => {
   })
   return (
     <>
-      <Search func={props.searchFunction} />
-
       <h1>
         {filteredAnimals.length
           ? `Remaining ${props.kind}: ${filteredAnimals.length}`
           : `No more ${props.kind}((`}
       </h1>
+      <Search func={props.searchFunction} />
       <div className="container">
         {filteredAnimals.map((animal) => (
           <Card
