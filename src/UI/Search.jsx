@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Search.css'
+import '../UI/Search.css'
 
 const Search = (props) => {
   return (

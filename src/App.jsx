@@ -1,25 +1,23 @@
 import React, { Component } from 'react'
 import { animals, birds } from './animalsList'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './Header'
-import Animal from './Animal'
-import Home from './Home'
-import './App.css'
+import AddCreature from './components/AddCreature'
+import Creature from './pages/Creature'
+import Header from './UI/Header'
+import Home from './pages/Home'
+import './UI/App.css'
+import About from './pages/About'
 
 class App extends Component {
-  birds = [...birds].map((bird) => {
-    return { name: bird.name.toLowerCase(), likes: bird.likes }
-  })
-
-  animals = [...animals]
-
   state = {
     animals: localStorage.getItem('animals')
       ? JSON.parse(localStorage.getItem('animals'))
-      : this.animals,
+      : [...animals],
     birds: localStorage.getItem('birds')
       ? JSON.parse(localStorage.getItem('birds'))
-      : this.birds,
+      : [...birds].map((bird) => {
+        return { name: bird.name.toLowerCase(), likes: bird.likes }
+      }),
     query: ''
   }
 
@@ -47,6 +45,10 @@ class App extends Component {
     this.setState({ query: event.target.value.toLowerCase() })
   }
 
+  updateState = (kind, newState) => {
+    this.setState({ [kind]: newState })
+    localStorage.setItem(kind, JSON.stringify(newState))
+  }
   render() {
     return (
       <BrowserRouter>
@@ -63,7 +65,7 @@ class App extends Component {
             <Route
               path="/animals"
               element={
-                <Animal
+                <Creature
                   kind="animals"
                   data={this.state.animals}
                   searchQuery={this.state.query}
@@ -77,7 +79,7 @@ class App extends Component {
             <Route
               path="/birds"
               element={
-                <Animal
+                <Creature
                   kind="birds"
                   data={this.state.birds}
                   searchQuery={this.state.query}
@@ -86,6 +88,18 @@ class App extends Component {
                   decreaseFunction={this.changeLikes}
                   deleteFunction={this.deleteAnimal}
                 />
+              }
+            />
+            <Route
+              path="/add"
+              element={
+                <AddCreature data={this.state} updateState={this.updateState} />
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <About />
               }
             />
           </Routes>

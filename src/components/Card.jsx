@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Button from './Button'
-import './Card.css'
+import Button from '../UI/Button'
+import '../UI/Card.css'
 
 const Card = (props) => {
   return (
@@ -9,7 +9,7 @@ const Card = (props) => {
       <Button className={'btn delete'} func={props.deleteFunction} />
       <img
         className="animal_picture"
-        src={`https://source.unsplash.com/500x400/?&${props.name}`}
+        src={`https://source.unsplash.com/150x120/?&${props.name}`}
         alt={`The image of ${props.name}`}
       ></img>
       <h2>{props.name}</h2>
