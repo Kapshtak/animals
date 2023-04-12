@@ -21,8 +21,8 @@ class App extends Component {
     query: ''
   }
 
-  changeLikes = (name, likes, state, kind) => {
-    let fauna = state.map((item) => {
+  changeLikes = (name, likes, kind) => {
+    let fauna = this.state[kind].map((item) => {
       if (item.name == name) {
         return { ...item, likes: item.likes + likes }
       } else {
@@ -33,8 +33,8 @@ class App extends Component {
     localStorage.setItem(kind, JSON.stringify(fauna))
   }
 
-  deleteAnimal = (name, state, kind) => {
-    let fauna = state.filter((animal) => {
+  deleteAnimal = (name, kind) => {
+    let fauna = this.state[kind].filter((animal) => {
       return !(animal.name == name)
     })
     this.setState({ [kind]: fauna })
