@@ -9,26 +9,32 @@
 }
 
 .animal-card {
-  width: 600px;
-  height: 500px;
+  width: 40vw;
+  height: 60vh;
+  max-width: 600px;
+  max-height: 500px;
   background-color: antiquewhite;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .bird {
   background-image: url('https://source.unsplash.com/600x500/?&bird');
+  background-size: cover;
+  background-position: 50%;
 }
 
 .animal {
   background-image: url('https://source.unsplash.com/600x500/?&animal');
+  background-size: cover;
+  background-position: 50%;
 }
 
 .animal-card h2 {
-  padding-top: 1rem;
-  font-size: 36px;
+  padding-top: 2rem;
+  font-variant: small-caps;
+  font-size: 48px;
   color: white;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 a {

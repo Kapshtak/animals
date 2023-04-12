@@ -28,20 +28,17 @@ const Creature = (props) => {
               this,
               animal.name,
               -1,
-              props.data,
               props.kind
             )}
             increaseFunction={props.increaseFunction.bind(
               this,
               animal.name,
               +1,
-              props.data,
               props.kind
             )}
             deleteFunction={props.deleteFunction.bind(
               this,
               animal.name,
-              props.data,
               props.kind
             )}
           />
