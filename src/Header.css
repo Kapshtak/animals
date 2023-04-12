@@ -1,6 +1,6 @@
 header {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   height: 10vh;
   background-color: rgb(125, 125, 125);
@@ -12,4 +12,23 @@ header p {
   padding-left: 1rem;
   font-size: 48px;
   font-weight: 300;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+ul li {
+  list-style: none;
+  margin: 0rem 1rem;
+}
+
+a {
+  color: white;
+}
+
+.active {
+  color: gold;
 }

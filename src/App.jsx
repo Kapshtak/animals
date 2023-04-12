@@ -1,37 +1,46 @@
 import React, { Component } from 'react'
 import { animals, birds } from './animalsList'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './Header'
-import Search from './Search'
 import Animal from './Animal'
+import Home from './Home'
 import './App.css'
 
 class App extends Component {
-  birds = [...birds].map((animal) => {
-    return { name: animal.name.toLowerCase(), likes: animal.likes }
+  birds = [...birds].map((bird) => {
+    return { name: bird.name.toLowerCase(), likes: bird.likes }
   })
+
+  animals = [...animals]
+
   state = {
-    animals: [...animals, ...this.birds].sort(function (a, b) {
-      return a.name.localeCompare(b.name)
-    }),
+    animals: localStorage.getItem('animals')
+      ? JSON.parse(localStorage.getItem('animals'))
+      : this.animals,
+    birds: localStorage.getItem('birds')
+      ? JSON.parse(localStorage.getItem('birds'))
+      : this.birds,
     query: ''
   }
 
-  changeLikes = (name, likes) => {
-    let animals = [...this.state.animals].map((item) => {
+  changeLikes = (name, likes, state, kind) => {
+    let fauna = state.map((item) => {
       if (item.name == name) {
         return { ...item, likes: item.likes + likes }
       } else {
         return item
       }
     })
-    this.setState({ animals: animals })
+    this.setState({ [kind]: fauna })
+    localStorage.setItem(kind, JSON.stringify(fauna))
   }
 
-  deleteAnimal = (name) => {
-    let animals = [...this.state.animals].filter((animal) => {
+  deleteAnimal = (name, state, kind) => {
+    let fauna = state.filter((animal) => {
       return !(animal.name == name)
     })
-    this.setState({ animals: animals })
+    this.setState({ [kind]: fauna })
+    localStorage.setItem(kind, JSON.stringify(fauna))
   }
 
   findAnimal = (event) => {
@@ -39,20 +48,49 @@ class App extends Component {
   }
 
   render() {
-    const filteredElements = this.state.animals.filter((animal) => {
-      return animal.name.includes(this.state.query)
-    })
     return (
-      <div className="App">
-        <Header />
-        <Search func={this.findAnimal} />
-        <Animal
-          data={filteredElements}
-          decreaseFunction={this.changeLikes}
-          increaseFunction={this.changeLikes}
-          deleteFunction={this.deleteAnimal}
-        />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Header
+            animalsAmount={this.state.animals.length}
+            birdsAmount={this.state.birds.length}
+          />
+          <Routes>
+            <Route
+              path="/"
+              element={<Home animalLabel="Animals" birdLabel="Birds" />}
+            />
+            <Route
+              path="/animals"
+              element={
+                <Animal
+                  kind="animals"
+                  data={this.state.animals}
+                  searchQuery={this.state.query}
+                  searchFunction={this.findAnimal}
+                  increaseFunction={this.changeLikes}
+                  decreaseFunction={this.changeLikes}
+                  deleteFunction={this.deleteAnimal}
+                />
+              }
+            />
+            <Route
+              path="/birds"
+              element={
+                <Animal
+                  kind="birds"
+                  data={this.state.birds}
+                  searchQuery={this.state.query}
+                  searchFunction={this.findAnimal}
+                  increaseFunction={this.changeLikes}
+                  decreaseFunction={this.changeLikes}
+                  deleteFunction={this.deleteAnimal}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
     )
   }
 }

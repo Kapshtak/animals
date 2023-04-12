@@ -2,4 +2,6 @@ input {
   margin-top: 1rem;
   box-shadow: none;
   width: 170px;
+  font-size: 12px;
+  text-align: center;
 }
