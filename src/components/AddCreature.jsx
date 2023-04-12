@@ -3,14 +3,11 @@ import PropTypes from 'prop-types'
 import '../UI/AddCreature.css'
 
 export default function AddCreature(props) {
-  let success = false
-  let successMessage = ' has been added!'
   function addAnimal(event) {
     event.preventDefault()
 
     const form = event.target
     const formData = new FormData(form)
-
     const formJson = Object.fromEntries(formData.entries())
 
     if (formJson.kind === 'bird') {
@@ -24,8 +21,7 @@ export default function AddCreature(props) {
           return a.name.localeCompare(b.name)
         })
         props.updateState('birds', birds)
-        success = true
-        successMessage = formJson.name.toLowerCase() + successMessage
+        console.log(event.target.value)
       } else {
         alert('That bird already exists!')
       }
@@ -44,6 +40,7 @@ export default function AddCreature(props) {
         alert('That animal already exists!')
       }
     }
+    
   }
 
   return (
@@ -55,18 +52,18 @@ export default function AddCreature(props) {
             <option value="animal">Animal</option>
             <option value="bird">Bird</option>
           </select>
-          <input type="text" name="name" placeholder="Name of the creature" />
+          <input type="text" name="name" placeholder="Name of the creature" required/>
           <button className="formSubmit" type="submit">
             Add creature
           </button>
         </fieldset>
       </form>
-      {success && <h2>{successMessage}</h2>}
     </>
   )
 }
 
 AddCreature.propTypes = {
   data: PropTypes.object.isRequired,
-  updateState: PropTypes.func
+  updateState: PropTypes.func,
+  changeVisibility: PropTypes.func
 }

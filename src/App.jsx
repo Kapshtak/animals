@@ -7,6 +7,7 @@ import Header from './UI/Header'
 import Home from './pages/Home'
 import './UI/App.css'
 import About from './pages/About'
+import Modal from './UI/Modal'
 
 class App extends Component {
   state = {
@@ -18,7 +19,8 @@ class App extends Component {
       : [...birds].map((bird) => {
         return { name: bird.name.toLowerCase(), likes: bird.likes }
       }),
-    query: ''
+    query: '',
+    visible: false
   }
 
   changeLikes = (name, likes, kind) => {
@@ -49,6 +51,11 @@ class App extends Component {
     this.setState({ [kind]: newState })
     localStorage.setItem(kind, JSON.stringify(newState))
   }
+
+  changeVisibility = () => {
+    this.setState({ visible: !this.state.visible })
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -56,7 +63,14 @@ class App extends Component {
           <Header
             animalsAmount={this.state.animals.length}
             birdsAmount={this.state.birds.length}
+            changeVisibility={this.changeVisibility}
           />
+          <Modal
+            visible={this.state.visible}
+            changeVisibility={this.changeVisibility}
+          >
+            <AddCreature data={this.state} updateState={this.updateState} changeVisibility={this.changeVisibility}/>
+          </Modal>
           <Routes>
             <Route
               path="/"
@@ -90,18 +104,13 @@ class App extends Component {
                 />
               }
             />
-            <Route
+            {/* <Route
               path="/add"
               element={
                 <AddCreature data={this.state} updateState={this.updateState} />
               }
-            />
-            <Route
-              path="/about"
-              element={
-                <About />
-              }
-            />
+            /> */}
+            <Route path="/about" element={<About />} />
           </Routes>
         </div>
       </BrowserRouter>

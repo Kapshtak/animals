@@ -1,12 +1,11 @@
 legend {
-  color: white;
+  color: black;
   font-weight: 200;
 }
 
 fieldset {
   width: 20vw;
   margin: auto;
-  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -14,13 +13,14 @@ fieldset {
   align-items: center;
 }
 
-input, select {
+select, input {
   margin: 1rem 1rem;
   height: 20px;
+  width: 200px;
 }
 
 .formSubmit {
-  border: none;
+  border: 1px black solid;
   width: 120px;
   height: 30px;
   border-radius: 5px;
@@ -33,5 +33,19 @@ input, select {
 }
 
 .formSubmit:active {
-  color:red;
+  color: red;
+}
+
+.addAnimal {
+  border: none;
+  width: 190px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: none;
+  padding: 0.5rem 1rem;
+  margin: 1rem 1rem;
+  background-color: rgb(73, 73, 73);
+  color: gold;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
